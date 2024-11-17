@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "719021129909",
+    "project_id": "buklab",
+    "storage_bucket": "buklab.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719021129909:android:ed80bf6ed81e9b8edebefc",
+        "android_client_info": {
+          "package_name": "com.buklab.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_0EVXJjWUQ8uwDuyV-HfCq7eNKH_G7fA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

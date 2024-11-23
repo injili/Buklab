@@ -81,7 +81,13 @@ export default function App() {
         renderItem={({ item }) => (
           <View style={styles.tile}>
             <View style={styles.tiler}>
+              <Text style={styles.text}>{item.bname}</Text>
+              <Text style={styles.text}>{item.wname}</Text>
               <Text style={styles.text}>{item.content}</Text>
+              <Text style={styles.text}>{item.uname}</Text>
+              <Text style={styles.text}>
+                {new Date(item.date).toLocaleDateString()}
+              </Text>
               <Text style={styles.text}>{item.stars}</Text>
             </View>
           </View>

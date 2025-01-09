@@ -1,6 +1,9 @@
 import { StatusBar } from "expo-status-bar";
+import Colors from "../../utilities/color";
 import { Text, View, Pressable, StyleSheet, Dimensions } from "react-native";
 import { useFonts, Alata_400Regular } from "@expo-google-fonts/alata";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import Entypo from "@expo/vector-icons/Entypo";
 import { Link } from "expo-router";
 import Carousel from "react-native-reanimated-carousel";
 import tw from "twrnc";
@@ -81,14 +84,37 @@ export default function App() {
         renderItem={({ item }) => (
           <View style={styles.tile}>
             <View style={styles.tiler}>
-              <Text style={styles.text}>{item.bname}</Text>
-              <Text style={styles.text}>{item.wname}</Text>
-              <Text style={styles.text}>{item.content}</Text>
-              <Text style={styles.text}>{item.uname}</Text>
-              <Text style={styles.text}>
-                {new Date(item.date).toLocaleDateString()}
-              </Text>
-              <Text style={styles.text}>{item.stars}</Text>
+              <View style={styles.head}>
+                <MaterialCommunityIcons
+                  name="format-quote-close-outline"
+                  size={70}
+                  borderRadius={5}
+                  color="white"
+                />
+                <View>
+                  <Text style={styles.bname}>{item.bname}</Text>
+                  <Text style={styles.wname}>{item.wname}</Text>
+                </View>
+              </View>
+
+              <Text style={styles.content}>{item.content}</Text>
+              <View style={styles.head}>
+                <Text style={styles.text}>@ {item.uname}</Text>
+                <View>
+                  <Text style={styles.stats}>
+                    {new Date(item.date).toLocaleDateString()}
+                  </Text>
+                  <View style={styles.star}>
+                    <Entypo
+                      style={styles.stats}
+                      name="star-outlined"
+                      size={12}
+                      color="white"
+                    />
+                    <Text style={styles.stats}>{item.stars}</Text>
+                  </View>
+                </View>
+              </View>
             </View>
           </View>
         )}
@@ -105,13 +131,36 @@ export default function App() {
 
 const styles = StyleSheet.create({
   tile: {
-    ...tw.style("flex-1 items-center justify-center p-8"),
+    ...tw.style("flex-1 items-center justify-center px-8"),
   },
   tiler: {
-    ...tw.style("bg-indigo-400 p-8"),
+    backgroundColor: Colors.my_lilac,
+    ...tw.style("p-8"),
+  },
+  head: {
+    ...tw.style("flex-row justify-between"),
+  },
+  star: {
+    ...tw.style("flex-row justify-end"),
   },
   text: {
     fontFamily: "Alata_400Regular",
-    ...tw.style("text-center text-white"),
+    ...tw.style("text-left text-white"),
+  },
+  bname: {
+    fontFamily: "Alata_400Regular",
+    ...tw.style("text-right text-black text-2xl"),
+  },
+  wname: {
+    fontFamily: "Alata_400Regular",
+    ...tw.style("text-right text-black text-sm"),
+  },
+  content: {
+    fontFamily: "Alata_400Regular",
+    ...tw.style("text-left text-black py-4"),
+  },
+  stats: {
+    fontFamily: "Alata_400Regular",
+    ...tw.style("text-right text-white text-sm"),
   },
 });

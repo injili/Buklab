@@ -192,7 +192,7 @@ export default function App() {
                         ]}
                         onPress={() => Alert.alert("Book Lent")}
                       >
-                        <Text style={styles.buttonText}>lend</Text>
+                        <Text style={styles.buttonText}>Lend</Text>
                       </Pressable>
                     </View>
                   </View>
@@ -303,20 +303,20 @@ const styles = StyleSheet.create({
   },
   content: {
     fontFamily: "Montserrat_400Regular",
-    ...tw.style("w-full text-left text-black py-4"),
+    ...tw.style("text-left text-black py-4"),
   },
   stats: {
     fontFamily: "Alata_400Regular",
-    ...tw.style("text-right text-white text-sm"),
+    ...tw.style("text-right text-white text-sm mb-2"),
   },
   button: {
-    ...tw.style("bg-black px-4"),
+    ...tw.style("bg-black px-8 py-1 rounded-md"),
   },
   buttonPressed: {
     ...tw.style("bg-white text-black px-4"),
   },
   buttonText: {
     fontFamily: "Alata_400Regular",
-    ...tw.style("text-center text-white"),
+    ...tw.style("text-center text-white text-lg"),
   },
 });

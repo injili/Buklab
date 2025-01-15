@@ -14,7 +14,6 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import Entypo from "@expo/vector-icons/Entypo";
-import { Link } from "expo-router";
 import Carousel from "react-native-reanimated-carousel";
 import tw from "twrnc";
 
@@ -265,11 +264,6 @@ export default function App() {
           }
         }}
       />
-      {/* <Link href="/detail" asChild>
-        <Pressable>
-          <Text style={tw`text-white mt-4`}>Navigate to Detail</Text>
-        </Pressable>
-      </Link> */}
       <StatusBar style="auto" />
     </View>
   );

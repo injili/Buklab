@@ -78,8 +78,8 @@ export default function App() {
     },
     {
       id: 6,
-      title: "Book Suggestion",
-      bname: "Crocs And Monks",
+      bname: "Himself and Ourself",
+      wname: "Throthrodile",
       content:
         "Aenean porttitor convallis iincidunt egestas, odio quam pulvinar arcu, pellentesque ultricies arcun id sapien dui lacus in, tempor.",
       category: "suggestion",
@@ -243,35 +243,20 @@ export default function App() {
               <View style={styles.tile}>
                 <View style={styles.tiler}>
                   <View style={styles.head}>
-                    <FontAwesome5
-                      name="hand-holding-heart"
-                      size={140}
-                      color="white"
-                    />
+                    <FontAwesome5 name="brain" size={140} color="white" />
                     <View>
-                      <Text style={styles.bname}>{item.title}</Text>
-                      <Text style={styles.wname}>{item.cname}</Text>
+                      <Text style={styles.bname}>{item.bname}</Text>
+                      <Text style={styles.wname}>{item.wname}</Text>
                     </View>
                   </View>
 
-                  <Text style={styles.content}>Location: {item.location}.</Text>
+                  <Text style={styles.content}>{item.content}</Text>
                   <View style={styles.head}>
-                    <Text style={styles.text}>
-                      Date: {new Date(item.eventdate).toLocaleDateString()}
-                    </Text>
+                    <Text style={styles.text}>Recommendation</Text>
                     <View>
-                      <Text style={styles.stats}>
-                        {new Date(item.date).toLocaleDateString()}
-                      </Text>
-                      <Pressable
-                        style={({ pressed }) => [
-                          styles.button,
-                          pressed && styles.buttonPressed,
-                        ]}
-                        onPress={() => Alert.alert("Book Lent")}
-                      >
-                        <Text style={styles.buttonText}>RSVP</Text>
-                      </Pressable>
+                      <View style={styles.star}>
+                        <FontAwesome5 name="bookmark" size={12} color="white" />
+                      </View>
                     </View>
                   </View>
                 </View>
@@ -318,7 +303,7 @@ const styles = StyleSheet.create({
   },
   content: {
     fontFamily: "Montserrat_400Regular",
-    ...tw.style("text-left text-black py-4"),
+    ...tw.style("w-full text-left text-black py-4"),
   },
   stats: {
     fontFamily: "Alata_400Regular",

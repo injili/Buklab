@@ -29,17 +29,18 @@ export default function TabLayout() {
           },
           tabBarStyle: {
             backgroundColor: "#000",
+            borderTopWidth: 0,
           },
           headerTitle: () => (
-            <View style={tw.style("px-8")}>
+            <View style={tw.style("")}>
               <Text
                 style={{
-                  color: "#9B9BFF", // Header title color
-                  fontFamily: "Alata_400Regular", // Custom font
-                  fontSize: 24, // Font size
+                  color: "#9B9BFF",
+                  fontFamily: "Alata_400Regular",
+                  fontSize: 30,
                 }}
               >
-                Welcome to buklab
+                injili
               </Text>
             </View>
           ),

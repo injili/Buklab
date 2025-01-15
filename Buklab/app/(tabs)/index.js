@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import Colors from "../../utilities/color";
 import { Text, View, Pressable, StyleSheet, Dimensions } from "react-native";
 import { useFonts, Alata_400Regular } from "@expo-google-fonts/alata";
+import { Montserrat_400Regular } from "@expo-google-fonts/montserrat";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Entypo from "@expo/vector-icons/Entypo";
 import { Link } from "expo-router";
@@ -20,6 +21,7 @@ export default function App() {
       uname: "deez",
       bname: "The Big Book",
       wname: "John Though",
+      category: "log",
     },
     {
       id: 2,
@@ -30,6 +32,7 @@ export default function App() {
       uname: "Priest",
       bname: "The Other Book",
       wname: "Johnny Still",
+      category: "log",
     },
     {
       id: 3,
@@ -40,6 +43,7 @@ export default function App() {
       uname: "Jyune",
       bname: "For This Log",
       wname: "Fyodor",
+      category: "log",
     },
     {
       id: 4,
@@ -50,6 +54,7 @@ export default function App() {
       uname: "Ethan",
       bname: "Frogs and Kings",
       wname: "Dwayne",
+      category: "log",
     },
     {
       id: 5,
@@ -60,11 +65,37 @@ export default function App() {
       uname: "peeatah",
       bname: "I Am Not A Cat",
       wname: "Cat Mewton",
+      category: "log",
+    },
+    {
+      id: 6,
+      title: "Book Suggestion",
+      bname: "Crocs And Monks",
+      content:
+        "Aenean porttitor convallis iincidunt egestas, odio quam pulvinar arcu, pellentesque ultricies arcun id sapien dui lacus in, tempor.",
+      category: "suggestion",
+    },
+    {
+      id: 7,
+      title: "Meet Reminder",
+      Location: "The Big Eden",
+      Date: "2025-1-20T10:00:00Z",
+      Posted: "2024-11-20T10:00:00Z",
+      category: "reminder",
+    },
+    {
+      id: 8,
+      copy: "Hard Copy",
+      uname: "peeatah",
+      bname: "The Brothers Karamazov",
+      wname: "Cat Mewton",
+      category: "request",
     },
   ];
 
   let [fontsLoaded] = useFonts({
     Alata_400Regular,
+    Montserrat_400Regular,
   });
 
   if (!fontsLoaded) {
@@ -75,49 +106,91 @@ export default function App() {
     <View style={tw`flex-1 items-center justify-center bg-black`}>
       <Carousel
         vertical
-        loop={false}
+        loop={true}
         width={Dimensions.get("window").width}
         height={Dimensions.get("window").height}
         autoPlay={false}
         data={carouselData}
         scrollAnimationDuration={1000}
-        renderItem={({ item }) => (
-          <View style={styles.tile}>
-            <View style={styles.tiler}>
-              <View style={styles.head}>
-                <MaterialCommunityIcons
-                  name="format-quote-close-outline"
-                  size={70}
-                  borderRadius={5}
-                  color="white"
-                />
-                <View>
-                  <Text style={styles.bname}>{item.bname}</Text>
-                  <Text style={styles.wname}>{item.wname}</Text>
-                </View>
-              </View>
-
-              <Text style={styles.content}>{item.content}</Text>
-              <View style={styles.head}>
-                <Text style={styles.text}>@ {item.uname}</Text>
-                <View>
-                  <Text style={styles.stats}>
-                    {new Date(item.date).toLocaleDateString()}
-                  </Text>
-                  <View style={styles.star}>
-                    <Entypo
-                      style={styles.stats}
-                      name="star-outlined"
-                      size={12}
+        renderItem={({ item }) => {
+          if (item.category === "log") {
+            return (
+              <View style={styles.tile}>
+                <View style={styles.tiler}>
+                  <View style={styles.head}>
+                    <MaterialCommunityIcons
+                      name="format-quote-close-outline"
+                      size={140}
+                      borderRadius={5}
                       color="white"
                     />
-                    <Text style={styles.stats}>{item.stars}</Text>
+                    <View>
+                      <Text style={styles.bname}>{item.bname}</Text>
+                      <Text style={styles.wname}>{item.wname}</Text>
+                    </View>
+                  </View>
+
+                  <Text style={styles.content}>{item.content}</Text>
+                  <View style={styles.head}>
+                    <Text style={styles.text}>@ {item.uname}</Text>
+                    <View>
+                      <Text style={styles.stats}>
+                        {new Date(item.date).toLocaleDateString()}
+                      </Text>
+                      <View style={styles.star}>
+                        <Entypo
+                          style={styles.stats}
+                          name="star-outlined"
+                          size={12}
+                          color="white"
+                        />
+                        <Text style={styles.stats}>{item.stars}</Text>
+                      </View>
+                    </View>
                   </View>
                 </View>
               </View>
-            </View>
-          </View>
-        )}
+            );
+          } else if (item.category == "request") {
+            return (
+              <View style={styles.tile}>
+                <View style={styles.tiler}>
+                  <View style={styles.head}>
+                    <MaterialCommunityIcons
+                      name="format-quote-close-outline"
+                      size={140}
+                      borderRadius={5}
+                      color="white"
+                    />
+                    <View>
+                      <Text style={styles.bname}>{item.bname}</Text>
+                      <Text style={styles.wname}>{item.wname}</Text>
+                    </View>
+                  </View>
+
+                  <Text style={styles.content}>{item.content}</Text>
+                  <View style={styles.head}>
+                    <Text style={styles.text}>@ {item.uname}</Text>
+                    <View>
+                      <Text style={styles.stats}>
+                        {new Date(item.date).toLocaleDateString()}
+                      </Text>
+                      <View style={styles.star}>
+                        <Entypo
+                          style={styles.stats}
+                          name="star-outlined"
+                          size={12}
+                          color="white"
+                        />
+                        <Text style={styles.stats}>{item.stars}</Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            );
+          }
+        }}
       />
       {/* <Link href="/detail" asChild>
         <Pressable>
@@ -131,20 +204,20 @@ export default function App() {
 
 const styles = StyleSheet.create({
   tile: {
-    ...tw.style("flex-1 items-center justify-center px-8"),
+    ...tw.style("flex-1 items-center justify-center px-4 mb-24"),
   },
   tiler: {
     backgroundColor: Colors.my_lilac,
-    ...tw.style("p-8"),
+    ...tw.style("p-8 rounded-md"),
   },
   head: {
-    ...tw.style("flex-row justify-between"),
+    ...tw.style("flex-row justify-between items-center"),
   },
   star: {
     ...tw.style("flex-row justify-end"),
   },
   text: {
-    fontFamily: "Alata_400Regular",
+    fontFamily: "Montserrat_400Regular",
     ...tw.style("text-left text-white"),
   },
   bname: {
@@ -152,11 +225,11 @@ const styles = StyleSheet.create({
     ...tw.style("text-right text-black text-2xl"),
   },
   wname: {
-    fontFamily: "Alata_400Regular",
+    fontFamily: "Montserrat_400Regular",
     ...tw.style("text-right text-black text-sm"),
   },
   content: {
-    fontFamily: "Alata_400Regular",
+    fontFamily: "Montserrat_400Regular",
     ...tw.style("text-left text-black py-4"),
   },
   stats: {

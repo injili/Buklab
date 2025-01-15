@@ -4,6 +4,7 @@ import { Text, View, Pressable, StyleSheet, Dimensions } from "react-native";
 import { useFonts, Alata_400Regular } from "@expo-google-fonts/alata";
 import { Montserrat_400Regular } from "@expo-google-fonts/montserrat";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import Entypo from "@expo/vector-icons/Entypo";
 import { Link } from "expo-router";
 import Carousel from "react-native-reanimated-carousel";
@@ -78,17 +79,18 @@ export default function App() {
     {
       id: 7,
       title: "Meet Reminder",
-      Location: "The Big Eden",
-      Date: "2025-1-20T10:00:00Z",
-      Posted: "2024-11-20T10:00:00Z",
+      location: "The Big Eden",
+      date: "2025-1-20T10:00:00Z",
+      posted: "2024-11-20T10:00:00Z",
       category: "reminder",
     },
     {
       id: 8,
       copy: "Hard Copy",
-      uname: "peeatah",
+      uname: "her.way",
       bname: "The Brothers Karamazov",
-      wname: "Cat Mewton",
+      wname: "Fyodr Himselfman",
+      date: "2025-1-12T10:00:00Z",
       category: "request",
     },
   ];
@@ -156,10 +158,9 @@ export default function App() {
               <View style={styles.tile}>
                 <View style={styles.tiler}>
                   <View style={styles.head}>
-                    <MaterialCommunityIcons
-                      name="format-quote-close-outline"
+                    <FontAwesome5
+                      name="hand-holding-heart"
                       size={140}
-                      borderRadius={5}
                       color="white"
                     />
                     <View>
@@ -168,22 +169,21 @@ export default function App() {
                     </View>
                   </View>
 
-                  <Text style={styles.content}>{item.content}</Text>
+                  <Text style={styles.content}>{item.copy} book request.</Text>
                   <View style={styles.head}>
                     <Text style={styles.text}>@ {item.uname}</Text>
                     <View>
                       <Text style={styles.stats}>
                         {new Date(item.date).toLocaleDateString()}
                       </Text>
-                      <View style={styles.star}>
-                        <Entypo
-                          style={styles.stats}
-                          name="star-outlined"
-                          size={12}
-                          color="white"
-                        />
-                        <Text style={styles.stats}>{item.stars}</Text>
-                      </View>
+                      <Pressable
+                        style={({ pressed }) => [
+                          styles.button,
+                          pressed && styles.buttonPressed,
+                        ]}
+                      >
+                        <Text style={styles.buttonText}></Text>
+                      </Pressable>
                     </View>
                   </View>
                 </View>
@@ -235,5 +235,15 @@ const styles = StyleSheet.create({
   stats: {
     fontFamily: "Alata_400Regular",
     ...tw.style("text-right text-white text-sm"),
+  },
+  button: {
+    ...tw.style(""),
+  },
+  buttonPressed: {
+    ...tw.style(""),
+  },
+  buttonText: {
+    fontFamily: "Alata_400Regular",
+    ...tw.style("text-center"),
   },
 });

@@ -182,7 +182,7 @@ export default function App() {
                           pressed && styles.buttonPressed,
                         ]}
                       >
-                        <Text style={styles.buttonText}></Text>
+                        <Text style={styles.buttonText}>lend</Text>
                       </Pressable>
                     </View>
                   </View>
@@ -237,13 +237,13 @@ const styles = StyleSheet.create({
     ...tw.style("text-right text-white text-sm"),
   },
   button: {
-    ...tw.style(""),
+    ...tw.style("bg-black px-4"),
   },
   buttonPressed: {
-    ...tw.style(""),
+    ...tw.style("bg-white text-black px-4"),
   },
   buttonText: {
     fontFamily: "Alata_400Regular",
-    ...tw.style("text-center"),
+    ...tw.style("text-center text-white"),
   },
 });

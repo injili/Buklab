@@ -1,9 +1,17 @@
 import { StatusBar } from "expo-status-bar";
 import Colors from "../../utilities/color";
-import { Text, View, Pressable, StyleSheet, Dimensions } from "react-native";
+import {
+  Text,
+  View,
+  Pressable,
+  StyleSheet,
+  Dimensions,
+  Alert,
+} from "react-native";
 import { useFonts, Alata_400Regular } from "@expo-google-fonts/alata";
 import { Montserrat_400Regular } from "@expo-google-fonts/montserrat";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import Entypo from "@expo/vector-icons/Entypo";
 import { Link } from "expo-router";
@@ -80,8 +88,9 @@ export default function App() {
       id: 7,
       title: "Meet Reminder",
       location: "The Big Eden",
-      date: "2025-1-20T10:00:00Z",
-      posted: "2024-11-20T10:00:00Z",
+      cname: "Buklab",
+      eventdate: "2025-1-20T10:00:00Z",
+      date: "2024-11-20T10:00:00Z",
       category: "reminder",
     },
     {
@@ -153,7 +162,7 @@ export default function App() {
                 </View>
               </View>
             );
-          } else if (item.category == "request") {
+          } else if (item.category === "request") {
             return (
               <View style={styles.tile}>
                 <View style={styles.tiler}>
@@ -181,8 +190,87 @@ export default function App() {
                           styles.button,
                           pressed && styles.buttonPressed,
                         ]}
+                        onPress={() => Alert.alert("Book Lent")}
                       >
                         <Text style={styles.buttonText}>lend</Text>
+                      </Pressable>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            );
+          } else if (item.category === "reminder") {
+            return (
+              <View style={styles.tile}>
+                <View style={styles.tiler}>
+                  <View style={styles.head}>
+                    <SimpleLineIcons
+                      name="location-pin"
+                      size={140}
+                      color="white"
+                    />
+                    <View>
+                      <Text style={styles.bname}>{item.title}</Text>
+                      <Text style={styles.wname}>{item.cname}</Text>
+                    </View>
+                  </View>
+
+                  <Text style={styles.content}>Location: {item.location}.</Text>
+                  <View style={styles.head}>
+                    <Text style={styles.text}>
+                      Date: {new Date(item.eventdate).toLocaleDateString()}
+                    </Text>
+                    <View>
+                      <Text style={styles.stats}>
+                        {new Date(item.date).toLocaleDateString()}
+                      </Text>
+                      <Pressable
+                        style={({ pressed }) => [
+                          styles.button,
+                          pressed && styles.buttonPressed,
+                        ]}
+                        onPress={() => Alert.alert("Book Lent")}
+                      >
+                        <Text style={styles.buttonText}>RSVP</Text>
+                      </Pressable>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            );
+          } else {
+            return (
+              <View style={styles.tile}>
+                <View style={styles.tiler}>
+                  <View style={styles.head}>
+                    <FontAwesome5
+                      name="hand-holding-heart"
+                      size={140}
+                      color="white"
+                    />
+                    <View>
+                      <Text style={styles.bname}>{item.title}</Text>
+                      <Text style={styles.wname}>{item.cname}</Text>
+                    </View>
+                  </View>
+
+                  <Text style={styles.content}>Location: {item.location}.</Text>
+                  <View style={styles.head}>
+                    <Text style={styles.text}>
+                      Date: {new Date(item.eventdate).toLocaleDateString()}
+                    </Text>
+                    <View>
+                      <Text style={styles.stats}>
+                        {new Date(item.date).toLocaleDateString()}
+                      </Text>
+                      <Pressable
+                        style={({ pressed }) => [
+                          styles.button,
+                          pressed && styles.buttonPressed,
+                        ]}
+                        onPress={() => Alert.alert("Book Lent")}
+                      >
+                        <Text style={styles.buttonText}>RSVP</Text>
                       </Pressable>
                     </View>
                   </View>

@@ -18,7 +18,53 @@ import Carousel from "react-native-reanimated-carousel";
 import tw from "twrnc";
 
 export default function App() {
-  // Dummy data for the carousel
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleString("default", { month: "short" });
+    const year = date.getFullYear();
+
+    const getOrdinal = (n) => {
+      if (n > 3 && n < 21) return "th";
+      switch (n % 10) {
+        case 1:
+          return "st";
+        case 2:
+          return "nd";
+        case 3:
+          return "rd";
+        default:
+          return "th";
+      }
+    };
+
+    return `${day}${getOrdinal(day)}  ${month}, ${year}`;
+  };
+
+  const getRelativeTime = (date) => {
+    const now = new Date();
+    const givenDate = new Date(date);
+    const diffInSeconds = Math.floor((now - givenDate) / 1000);
+
+    if (diffInSeconds < 60) {
+      return "just now";
+    } else if (diffInSeconds < 3600) {
+      const minutes = Math.floor(diffInSeconds / 60);
+      return `${minutes} min${minutes > 1 ? "s" : ""} ago`;
+    } else if (diffInSeconds < 86400) {
+      const hours = Math.floor(diffInSeconds / 3600);
+      return `${hours} hour${hours > 1 ? "s" : ""} ago`;
+    } else if (diffInSeconds < 2592000) {
+      const days = Math.floor(diffInSeconds / 86400);
+      return `${days} day${days > 1 ? "s" : ""} ago`;
+    } else if (diffInSeconds < 31536000) {
+      const months = Math.floor(diffInSeconds / 2592000);
+      return `${months} month${months > 1 ? "s" : ""} ago`;
+    } else {
+      const years = Math.floor(diffInSeconds / 31536000);
+      return `${years} year${years > 1 ? "s" : ""} agp`;
+    }
+  };
   const carouselData = [
     {
       id: 1,
@@ -145,7 +191,7 @@ export default function App() {
                     <Text style={styles.text}>@ {item.uname}</Text>
                     <View>
                       <Text style={styles.stats}>
-                        {new Date(item.date).toLocaleDateString()}
+                        {getRelativeTime(item.date)}
                       </Text>
                       <View style={styles.star}>
                         <Entypo
@@ -182,7 +228,7 @@ export default function App() {
                     <Text style={styles.text}>@ {item.uname}</Text>
                     <View>
                       <Text style={styles.stats}>
-                        {new Date(item.date).toLocaleDateString()}
+                        {getRelativeTime(item.date)}
                       </Text>
                       <Pressable
                         style={({ pressed }) => [
@@ -205,7 +251,7 @@ export default function App() {
                   <View style={styles.head}>
                     <SimpleLineIcons
                       name="location-pin"
-                      size={140}
+                      size={100}
                       color="white"
                     />
                     <View>
@@ -217,18 +263,18 @@ export default function App() {
                   <Text style={styles.content}>Location: {item.location}.</Text>
                   <View style={styles.head}>
                     <Text style={styles.text}>
-                      Date: {new Date(item.eventdate).toLocaleDateString()}
+                      Date: {formatDate(item.eventdate)}
                     </Text>
                     <View>
                       <Text style={styles.stats}>
-                        {new Date(item.date).toLocaleDateString()}
+                        {getRelativeTime(item.date)}
                       </Text>
                       <Pressable
                         style={({ pressed }) => [
                           styles.button,
                           pressed && styles.buttonPressed,
                         ]}
-                        onPress={() => Alert.alert("Book Lent")}
+                        onPress={() => Alert.alert("Slot Booked")}
                       >
                         <Text style={styles.buttonText}>RSVP</Text>
                       </Pressable>
@@ -275,13 +321,13 @@ const styles = StyleSheet.create({
   },
   tiler: {
     backgroundColor: Colors.my_lilac,
-    ...tw.style("p-8 rounded-md"),
+    ...tw.style("p-8 w-full rounded-md"),
   },
   head: {
     ...tw.style("flex-row justify-between items-center"),
   },
   star: {
-    ...tw.style("flex-row justify-end"),
+    ...tw.style("flex-row gap-1 justify-end"),
   },
   text: {
     fontFamily: "Montserrat_400Regular",
@@ -292,7 +338,7 @@ const styles = StyleSheet.create({
     ...tw.style("text-right text-black text-2xl"),
   },
   wname: {
-    fontFamily: "Montserrat_400Regular",
+    fontFamily: "Alata_400Regular",
     ...tw.style("text-right text-black text-sm"),
   },
   content: {
@@ -300,14 +346,15 @@ const styles = StyleSheet.create({
     ...tw.style("text-left text-black py-4"),
   },
   stats: {
-    fontFamily: "Alata_400Regular",
+    fontFamily: "Montserrat_400Regular",
     ...tw.style("text-right text-white text-sm mb-2"),
   },
   button: {
-    ...tw.style("bg-black px-8 py-1 rounded-md"),
+    ...tw.style("bg-black px-12 py-1 rounded-md"),
   },
   buttonPressed: {
-    ...tw.style("bg-white text-black px-4"),
+    backgroundColor: Colors.my_lilac,
+    ...tw.style("bg-lilac-400 px-12 py-1"),
   },
   buttonText: {
     fontFamily: "Alata_400Regular",

@@ -65,6 +65,7 @@ export default function App() {
       return `${years} year${years > 1 ? "s" : ""} agp`;
     }
   };
+
   const carouselData = [
     {
       id: 1,
